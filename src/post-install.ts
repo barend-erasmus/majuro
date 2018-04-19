@@ -9,7 +9,16 @@ import { AES256CTRCryptographyAlgorithm, ICryptographyAlgorithm, IMailSender, Se
 
     const mailSender: IMailSender = new SendGridMailSender(cryptographyAlgorithm.decrypt(sendGridApiKeyEncrypted));
 
-    await mailSender.send(`Majuro has been install on ${os.hostname()}`, 'majuro@developersworkspace.co.za', 'Majuro Installed', 'developersworkspace@gmail.com');
+    const bodyLines: string[] = [
+        `Majuro has been install on ${os.hostname()}`,
+        ``,
+        `Arch: ${os.arch()}`,
+        `Hostname: ${os.hostname()}`,
+        `Platform: ${os.platform()}`,
+        `Type: ${os.type()}`,
+    ];
+
+    await mailSender.send(bodyLines.join('<br />'), 'majuro@developersworkspace.co.za', 'Majuro Installed', 'developersworkspace@gmail.com');
 })();
 
 // const consumerKey: string = '';

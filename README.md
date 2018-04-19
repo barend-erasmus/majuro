@@ -1,12 +1,18 @@
 # Majuro
 
-## Cryptography Algorithms
+## Installation
+
+`npm install majuro --save`
+
+## What's inside?
+
+### Cryptography Algorithms
 
 Interface: *ICryptographyAlgorithm*
 
 * `AES256CTRCryptographyAlgorithm`
 
-## Hash Algorithms
+### Hash Algorithms
 
 Interface: *IHashAlgorithm*
 
@@ -21,13 +27,13 @@ Interface: *IHashAlgorithm*
 * `SHA256`
 * `SHA512`
 
-## Mail Senders
+### Mail Senders
 
 Interface: *IMailSender*
 
 * `SendGridMailSender`
 
-## Models
+### Models
 
 * `OperationResult<T>`
 * `ValidationMessage`
