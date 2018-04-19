@@ -29,8 +29,6 @@
     "run-sequence": "^2.2.1"
   },
   "dependencies": {
-    "@sendgrid/mail": "^6.2.1",
-    "request": "^2.85.0",
-    "request-promise": "^4.2.2"
+    "axios": "^0.18.0"
   }
 }

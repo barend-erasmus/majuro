@@ -1,24 +1,44 @@
-import * as sendGrid from '@sendgrid/mail';
-
+import axios from 'axios';
 import { IMailSender } from '../interfaces/mail-sender';
 
 export class SendGridMailSender implements IMailSender {
 
     constructor(
-        private apiKey: string,
+        protected apiKey: string,
     ) {
-        sendGrid.setApiKey(this.apiKey);
     }
 
     public async send(body: string, from: string, subject: string, to: string): Promise<void> {
-        const msg = {
-            from,
-            html: body,
-            subject,
-            to,
-          };
+        const result: any = await axios({
+            data: {
+                content: [
+                    {
+                        type: 'text/html',
+                        value: body,
+                    },
+                ],
+                from: {
+                    email: from,
+                },
+                personalizations: [
+                    {
+                        subject,
+                        to: [
+                            {
+                                email: to,
+                            },
+                        ],
+                    },
+                ],
+            },
+            headers: {
+                authorization: `bearer ${this.apiKey}`,
+            },
+            method: 'POST',
+            url: 'https://api.sendgrid.com/v3/mail/send',
+        });
 
-        const result: any = await sendGrid.send(msg);
+        console.log(result);
     }
 
 }

@@ -4,7 +4,7 @@ import { ICryptographyAlgorithm } from '../interfaces/cryptography-algorithm';
 export class AES256CTRCryptographyAlgorithm implements ICryptographyAlgorithm {
 
     constructor(
-        private password: string,
+        protected password: string,
     ) {
 
     }
