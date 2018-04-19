@@ -21,6 +21,12 @@ Interface: *IHashAlgorithm*
 * `SHA256`
 * `SHA512`
 
+## Mail Senders
+
+Interface: *IMailSender*
+
+* `SendGridMailSender`
+
 ## Models
 
 * `OperationResult<T>`
