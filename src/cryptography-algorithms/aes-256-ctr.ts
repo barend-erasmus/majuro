@@ -1,5 +1,6 @@
 import * as crypto from 'crypto';
 import { ICryptographyAlgorithm } from '../interfaces/cryptography-algorithm';
+import { Majuro } from '../majuro';
 
 export class AES256CTRCryptographyAlgorithm implements ICryptographyAlgorithm {
 
@@ -10,6 +11,15 @@ export class AES256CTRCryptographyAlgorithm implements ICryptographyAlgorithm {
     }
 
     public decrypt(data: string): string {
+        Majuro.getDefaultLoggerForRuntime().log(`decrypt('${data}')`, {
+            class: 'AES256CTRCryptographyAlgorithm',
+            method: 'decrypt',
+            namespace: 'cryptography-algorithms',
+            parameters: {
+                data,
+            },
+        });
+
         const iv: Buffer = Buffer.from(this.hash(this.password).slice(16), 'utf8');
 
         const cipher: crypto.Decipher = crypto.createDecipheriv('aes-256-ctr', this.hash(this.password), iv);
@@ -21,6 +31,15 @@ export class AES256CTRCryptographyAlgorithm implements ICryptographyAlgorithm {
     }
 
     public encrypt(data: string): string {
+        Majuro.getDefaultLoggerForRuntime().log(`encrypt('${data}')`, {
+            class: 'AES256CTRCryptographyAlgorithm',
+            method: 'encrypt',
+            namespace: 'cryptography-algorithms',
+            parameters: {
+                data,
+            },
+        });
+
         const iv: Buffer = Buffer.from(this.hash(this.password).slice(16), 'utf8');
 
         const cipher: crypto.Cipher = crypto.createCipheriv('aes-256-ctr', this.hash(this.password), iv);

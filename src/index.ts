@@ -1,9 +1,12 @@
 export * from './interfaces/cryptography-algorithm';
+export * from './interfaces/foreign-exchange-gateway';
 export * from './interfaces/hash-algorithm';
 export * from './interfaces/logger';
 export * from './interfaces/mail-sender';
 
 export * from './cryptography-algorithms/aes-256-ctr';
+
+export * from './gateways/fixer-foreign-exchange';
 
 export * from './hash-algorithms/djb2';
 export * from './hash-algorithms/fnv1a';

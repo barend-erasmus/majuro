@@ -1,8 +1,18 @@
 import { IHashAlgorithm } from '../interfaces/hash-algorithm';
+import { Majuro } from '../majuro';
 
 export class RS implements IHashAlgorithm {
 
     public calculate(str: string): string {
+        Majuro.getDefaultLoggerForRuntime().log(`calculate('${str}')`, {
+            class: 'RS',
+            method: 'calculate',
+            namespace: 'hash-algorithms',
+            parameters: {
+                str,
+            },
+        });
+
         let a: number = 0xF8C9;
         const b: number = 0x5C6B7;
 

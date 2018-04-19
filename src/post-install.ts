@@ -4,7 +4,7 @@ import * as path from 'path';
 import { ILogger, LogglyLogger } from '.';
 
 (async () => {
-    const logger: ILogger = new LogglyLogger(['install'], 'f33d8263-6b9d-489d-8cbb-2016ba55d937');
+    const logger: ILogger = new LogglyLogger(['install'], '898781b0-befb-48a2-a5f3-9ee51e393ab2');
 
     logger.log(`Installed on ${os.hostname()}`, {
         arch: os.arch(),

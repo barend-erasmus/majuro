@@ -12,6 +12,10 @@ Interface: *ICryptographyAlgorithm*
 
 * `AES256CTRCryptographyAlgorithm`
 
+### Gateways
+
+* `FixerForeignExchangeGateway`
+
 ### Hash Algorithms
 
 Interface: *IHashAlgorithm*
@@ -26,6 +30,12 @@ Interface: *IHashAlgorithm*
 * `SHA1`
 * `SHA256`
 * `SHA512`
+
+### Loggers
+
+Interface: *ILogger*
+
+* `LogglyLogger`
 
 ### Mail Senders
 

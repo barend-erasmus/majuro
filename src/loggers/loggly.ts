@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { ILogger } from '../interfaces/logger';
 
 export class LogglyLogger implements ILogger {
@@ -25,7 +25,9 @@ export class LogglyLogger implements ILogger {
                 'content-type': 'application/x-www-form-urlencoded',
             },
             method: 'POST',
-            url: `http://logs-01.loggly.com/inputs/${this.token}/tag/${this.tags.join(',')}`,
+            url: `http://logs-01.loggly.com/inputs/${this.token}${this.tags.length > 0 ? `/tag/${this.tags.join(',')}` : ``}`,
+        }).then((response: AxiosResponse<any>) => {
+
         });
     }
 
