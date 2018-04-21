@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { ILogger } from '../interfaces/logger';
+import { ILogger } from '..';
 
 export class LogglyLogger implements ILogger {
 

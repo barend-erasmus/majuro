@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IMailSender } from '../interfaces/mail-sender';
+import { IMailSender } from '..';
 import { Majuro } from '../majuro';
 
 export class SendGridMailSender implements IMailSender {

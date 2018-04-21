@@ -3,10 +3,18 @@ export * from './interfaces/foreign-exchange-gateway';
 export * from './interfaces/hash-algorithm';
 export * from './interfaces/logger';
 export * from './interfaces/mail-sender';
+export * from './interfaces/payment-gateway';
+export * from './interfaces/payment-repository';
+export * from './interfaces/subscription-repository';
+export * from './interfaces/subscription-service';
+export * from './interfaces/validator';
 
 export * from './cryptography-algorithms/aes-256-ctr';
 
+export * from './enums/frequency';
+
 export * from './gateways/fixer-foreign-exchange';
+export * from './gateways/pay-fast-payment';
 
 export * from './hash-algorithms/djb2';
 export * from './hash-algorithms/fnv1a';
@@ -24,4 +32,10 @@ export * from './loggers/loggly';
 export * from './mail-senders/send-grid';
 
 export * from './models/operation-result';
+export * from './models/subscription';
+export * from './models/subscription-create-result';
 export * from './models/validation-message';
+
+export * from './services/subscription';
+
+export * from './validators/subscription';
