@@ -1,5 +1,5 @@
 import * as crypto from 'crypto';
-import { ICryptographyAlgorithm } from '../interfaces/cryptography-algorithm';
+import { ICryptographyAlgorithm } from '..';
 import { Majuro } from '../majuro';
 
 export class AES256CTRCryptographyAlgorithm implements ICryptographyAlgorithm {

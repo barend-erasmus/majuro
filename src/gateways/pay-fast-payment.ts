@@ -43,7 +43,7 @@ export class PayFastPaymentGateway implements IPaymentGateway {
         }
 
         const params: any = {
-            amount: subscription.amount,
+            amount: subscription.amount.toString(),
             cancel_url: `${this.cancelURI}?subscriptionId=${subscription.id}`,
             cycles: 0,
             email_address: subscription.userId,

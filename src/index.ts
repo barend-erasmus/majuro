@@ -32,6 +32,7 @@ export * from './loggers/loggly';
 export * from './mail-senders/send-grid';
 
 export * from './models/operation-result';
+export * from './models/payment';
 export * from './models/subscription';
 export * from './models/subscription-create-result';
 export * from './models/validation-message';

@@ -1,10 +1,10 @@
 export enum Frequency {
 
-    Biyearly,
-    Daily,
-    Monthy,
-    Quarterly,
-    Weekly,
-    Yearly,
+    Biyearly = 183,
+    Daily = 1,
+    Monthy = 30,
+    Quarterly = 92,
+    Weekly = 7,
+    Yearly = 365,
 
 }

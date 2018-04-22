@@ -12,9 +12,22 @@ Interface: *ICryptographyAlgorithm*
 
 * `AES256CTRCryptographyAlgorithm`
 
+[Read more]()
+
+### Enums
+
+* `Frequency`
+
+## Express JS Middleware
+
+* `ExpressJSIPRestrictor`
+
+[Read more]()
+
 ### Gateways
 
 * `FixerForeignExchangeGateway`
+* `PayFastPaymentGateway`
 
 ### Hash Algorithms
 
@@ -46,4 +59,15 @@ Interface: *IMailSender*
 ### Models
 
 * `OperationResult<T>`
+* `Payment`
+* `SubscriptionCreateResult`
+* `Subscription`
 * `ValidationMessage`
+
+### Services
+
+* `SubscriptionService`
+
+### Validators
+
+* `SubscriptionValidator`
