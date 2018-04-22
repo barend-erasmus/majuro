@@ -1,8 +1,12 @@
 # Majuro
 
+25+ fully tested and extensible classes helping you with Rapid Application Development(RAD).
+
+![Majuro](https://i1.wp.com/www.theglobalcouple.com/wp-content/uploads/2015/10/majuro-13.jpg)
+
 ## Installation
 
-`npm install majuro --save`
+`npm install --save majuro`
 
 ## What's inside?
 
@@ -12,7 +16,7 @@ Interface: *ICryptographyAlgorithm*
 
 * `AES256CTRCryptographyAlgorithm`
 
-[Read more]()
+[Read more](https://github.com/barend-erasmus/majuro/tree/master/src/cryptography-algorithms)
 
 ### Enums
 
@@ -22,7 +26,7 @@ Interface: *ICryptographyAlgorithm*
 
 * `ExpressJSIPRestrictor`
 
-[Read more]()
+[Read more](https://github.com/barend-erasmus/majuro/tree/master/src/expressjs-middleware)
 
 ### Gateways
 
