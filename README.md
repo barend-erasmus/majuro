@@ -1,8 +1,12 @@
 # Majuro
 
-25+ fully tested and extensible classes helping you with Rapid Application Development(RAD).
+Collection of over 25 fully tested and extensible classes.
 
 ![Majuro](https://i1.wp.com/www.theglobalcouple.com/wp-content/uploads/2015/10/majuro-13.jpg)
+
+## Majuro's Vision
+
+Majuro's vision is to provide the developer with a collection of classes to speed-up software development.
 
 ## Installation
 

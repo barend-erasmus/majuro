@@ -7,6 +7,7 @@ export class ExpressJSIPRestrictor {
     protected ipAddressHeaders: string[] = [
         'x-client-ip',
         'x-forwarded-for',
+        'x-real-ip',
     ];
 
     protected mode: string = null;
@@ -64,14 +65,20 @@ export class ExpressJSIPRestrictor {
                 }
             }
 
-            if (!ipAddress) {
-                next();
-                return;
+            ipAddress = ipAddress.split(',')[0].trim();
+
+            if (this.mode === 'allow') {
+                if (this.ipAddresses.indexOf(ipAddress) > -1) {
+                    next();
+                    return;
+                }
             }
 
-            if (this.ipAddresses.indexOf(ipAddress) > -1) {
-                next();
-                return;
+            if (this.mode === 'deny') {
+                if (this.ipAddresses.indexOf(ipAddress) === -1) {
+                    next();
+                    return;
+                }
             }
 
             response.status(403).end();

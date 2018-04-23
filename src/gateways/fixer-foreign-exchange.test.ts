@@ -6,7 +6,7 @@ describe('FixerForeignExchangeGateway', () => {
 
     let foreignExchangeGateway: FixerForeignExchangeGateway = null;
 
-    before(async () => {
+    beforeEach(async () => {
         foreignExchangeGateway = new FixerForeignExchangeGateway();
     });
 

@@ -90,9 +90,9 @@ export class SubscriptionService implements ISubscriptionService {
 
         const numberOfDaysSinceFirstPayment: number = (new Date().getTime() - firstPaymentTimestamp.getTime()) / 86400000;
 
-        const numberOfPaymentsExpected: number = subscription.frequency * numberOfDaysSinceFirstPayment;
+        const numberOfPaymentsExpected: number = (numberOfDaysSinceFirstPayment / subscription.frequency) + 1;
 
-        if (payments.length < numberOfPaymentsExpected) {
+        if (payments.length < Math.floor(numberOfPaymentsExpected)) {
             return false;
         }
 

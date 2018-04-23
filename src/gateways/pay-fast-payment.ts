@@ -29,7 +29,7 @@ export class PayFastPaymentGateway implements IPaymentGateway {
             case Frequency.Biyearly:
                 frequency = 5;
                 break;
-            case Frequency.Monthy:
+            case Frequency.Monthly:
                 frequency = 3;
                 break;
             case Frequency.Quarterly:

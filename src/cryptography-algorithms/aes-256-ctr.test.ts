@@ -6,7 +6,7 @@ describe('AES256CTRCryptographyAlgorithm', () => {
 
     let cryptographyAlgorithm: AES256CTRCryptographyAlgorithm = null;
 
-    before(async () => {
+    beforeEach(async () => {
         cryptographyAlgorithm = new AES256CTRCryptographyAlgorithm('password');
     });
 

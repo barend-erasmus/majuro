@@ -50,8 +50,6 @@ export class SendGridMailSender implements IMailSender {
             method: 'POST',
             url: 'https://api.sendgrid.com/v3/mail/send',
         });
-
-        console.log(result);
     }
 
 }
