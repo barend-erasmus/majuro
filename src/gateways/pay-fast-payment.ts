@@ -10,6 +10,7 @@ export class PayFastPaymentGateway implements IPaymentGateway {
         protected merchantId: string,
         protected merchantSecret: string,
         protected notifyURI: string,
+        protected passphrase: string,
         protected returnURI: string,
         protected sandbox: boolean,
     ) {
@@ -94,6 +95,43 @@ export class PayFastPaymentGateway implements IPaymentGateway {
 
         const sortedKeys: string[] = Object.keys(params);
 
-        return `https://${this.sandbox ? 'sandbox' : 'www'}.payfast.co.za/eng/process?${sortedKeys.map((key) => `${key}=${encodeURIComponent(params[key])}`).join('&')}`;
+        const signature: string = this.generateSignature(params);
+
+        return `https://${this.sandbox ? 'sandbox' : 'www'}.payfast.co.za/eng/process?${sortedKeys.map((key) => `${key}=${encodeURIComponent(params[key]).replace(/%20/g, '+')}`).join('&')}&signature=${signature}`;
+    }
+
+    protected generateSignature(params: any): string {
+        const variables: string[] = [
+            'merchant_id',
+            'merchant_key',
+            'return_url',
+            'cancel_url',
+            'notify_url',
+            'name_first',
+            'name_last',
+            'email_address',
+            'cell_number',
+            'm_payment_id',
+            'amount',
+            'item_name',
+            'item_description',
+            'email_confirmation',
+            'confirmation_address',
+            'payment_method',
+            'subscription_type',
+            'billing_date',
+            'recurring_amount',
+            'frequency',
+            'cycles',
+        ];
+
+        const str: string = variables
+            .filter((variable: string) => params[variable])
+            .map((variable: string) => `${variable}=${encodeURIComponent(params[variable]).replace(/%20/g, '+')}`)
+            .join('&');
+
+        const signature: string = new MD5().calculate(`${str}${this.passphrase ? `&passphrase=${this.passphrase}` : ''}`);
+
+        return signature;
     }
 }

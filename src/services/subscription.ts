@@ -12,6 +12,41 @@ export class SubscriptionService implements ISubscriptionService {
 
     }
 
+    public async cancel(userId: string): Promise<boolean> {
+        Majuro.getDefaultLoggerForRuntime().log(`cancel('${userId}')`, {
+            class: 'SubscriptionService',
+            method: 'cancel',
+            namespace: 'services',
+            parameters: {
+                userId,
+            },
+        });
+
+        const subscription: Subscription = await this.subscriptionRepository.find(userId);
+
+        if (!subscription) {
+            return null;
+        }
+
+        let payments: Payment[] = await this.paymentRepository.list(subscription.id);
+
+        if (payments.length === 0) {
+            return false;
+        }
+
+        payments = payments.sort((a: Payment, b: Payment) => {
+            return a.timestamp.getTime() - b.timestamp.getTime();
+        });
+
+        const firstPayment: Payment = payments[0];
+
+        await this.paymentGateway.cancel(firstPayment.token);
+
+        await this.subscriptionRepository.delete(subscription.id);
+
+        return true;
+    }
+
     public async create(subscription: Subscription): Promise<OperationResult<SubscriptionCreateResult>> {
         Majuro.getDefaultLoggerForRuntime().log(`create(subscription)`, {
             class: 'SubscriptionService',
