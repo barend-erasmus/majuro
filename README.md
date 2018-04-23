@@ -6,7 +6,7 @@ Collection of over 25 fully tested and extensible classes.
 
 ## Majuro's Vision
 
-Majuro's vision is to provide the developer with a collection of classes to speed-up software development.
+Majuro's vision is to provide the developer with a collection of classes to speed-up the software development process.
 
 ## Installation
 
