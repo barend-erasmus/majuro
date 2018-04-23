@@ -1,4 +1,6 @@
-import { Frequency, IPaymentGateway, Subscription } from '..';
+import axios, { AxiosResponse } from 'axios';
+import * as moment from 'moment';
+import { Frequency, IPaymentGateway, MD5, Subscription } from '..';
 import { Majuro } from '../majuro';
 
 export class PayFastPaymentGateway implements IPaymentGateway {
@@ -9,8 +11,38 @@ export class PayFastPaymentGateway implements IPaymentGateway {
         protected merchantSecret: string,
         protected notifyURI: string,
         protected returnURI: string,
+        protected sandbox: boolean,
     ) {
 
+    }
+
+    public async cancel(token: string): Promise<boolean> {
+        const params = {
+            'merchant-id': this.merchantId,
+            'passphrase': this.merchantSecret,
+            'timestamp': moment().format('YYYY-MM-DDTHH:mm:ss[+02:00]'),
+            'version': 'v1',
+        };
+
+        const sortedKeys: string[] = Object.keys(params).sort();
+
+        const paramsString = sortedKeys.map((key: string) => `${key}=${encodeURIComponent(params[key].replace(new RegExp('\\\\', 'g'), ''))}`).join('&');
+
+        const signature: string = new MD5().calculate(paramsString);
+
+        const response: AxiosResponse<any> = await axios({
+            headers: {
+                'accept': 'application/json',
+                'merchant-id': params['merchant-id'],
+                'signature': signature,
+                'timestamp': params['timestamp'],
+                'version': params['version'],
+            },
+            method: 'PUT',
+            url: `https://api.payfast.co.za/subscriptions/${token}/cancel`,
+        });
+
+        return true;
     }
 
     public async createURIForSubscription(subscription: Subscription): Promise<string> {
@@ -50,7 +82,7 @@ export class PayFastPaymentGateway implements IPaymentGateway {
             frequency,
             item_description: subscription.description,
             item_name: subscription.name,
-            m_payment_id: subscription.id,
+            m_payment_id: subscription.id.toString(),
             merchant_id: this.merchantId,
             merchant_key: this.merchantSecret,
             name_first: subscription.userId,
@@ -62,6 +94,6 @@ export class PayFastPaymentGateway implements IPaymentGateway {
 
         const sortedKeys: string[] = Object.keys(params);
 
-        return `https://www.payfast.co.za/eng/process?${sortedKeys.map((key) => `${key}=${params[key]}`).join('&')}`;
+        return `https://${this.sandbox ? 'sandbox' : 'www'}.payfast.co.za/eng/process?${sortedKeys.map((key) => `${key}=${encodeURIComponent(params[key])}`).join('&')}`;
     }
 }

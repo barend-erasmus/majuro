@@ -10,7 +10,39 @@ export class LogglyLogger implements ILogger {
 
     }
 
-    public log(message: string, meta: any): void {
+    public debug(message: string, meta?: any): void {
+        if (!meta) {
+            meta = {};
+        }
+
+        meta.level = 'debug';
+
+        this.log(message, meta);
+    }
+
+    public error(error: Error, meta?: any): void {
+        if (!meta) {
+            meta = {};
+        }
+
+        meta.error = error;
+
+        meta.level = 'error';
+
+        this.log(error.message, meta);
+    }
+
+    public info(message: string, meta?: any): void {
+        if (!meta) {
+            meta = {};
+        }
+
+        meta.level = 'info';
+
+        this.log(message, meta);
+    }
+
+    public log(message: string, meta?: any): void {
         if (!meta) {
             meta = {};
         }
@@ -29,6 +61,16 @@ export class LogglyLogger implements ILogger {
         }).then((response: AxiosResponse<any>) => {
 
         });
+    }
+
+    public warning(message: string, meta?: any): void {
+        if (!meta) {
+            meta = {};
+        }
+
+        meta.level = 'warning';
+
+        this.log(message, meta);
     }
 
 }
