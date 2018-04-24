@@ -26,6 +26,12 @@ Interface: *ICryptographyAlgorithm*
 
 * `Frequency`
 
+## Express JS Helpers
+
+* `ExpressJSVideoHelper`
+
+[Read more](https://github.com/barend-erasmus/majuro/tree/master/src/expressjs-helpers)
+
 ## Express JS Middleware
 
 * `ExpressJSIPRestrictor`

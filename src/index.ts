@@ -13,6 +13,10 @@ export * from './cryptography-algorithms/aes-256-ctr';
 
 export * from './enums/frequency';
 
+export * from './expressjs-helpers/video';
+
+export * from './expressjs-middleware/ip-restrictor';
+
 export * from './gateways/fixer-foreign-exchange';
 export * from './gateways/pay-fast-payment';
 
