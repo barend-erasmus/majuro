@@ -5,15 +5,6 @@ import { Majuro } from '../majuro';
 export class MD4 implements IHashAlgorithm {
 
     public calculate(str: string): string {
-        Majuro.getDefaultLoggerForRuntime().log(`calculate('${str}')`, {
-            class: 'MD4',
-            method: 'calculate',
-            namespace: 'hash-algorithms',
-            parameters: {
-                str,
-            },
-        });
-
         const generator = crypto.createHash('md4');
 
         generator.update(str);

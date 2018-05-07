@@ -17,43 +17,18 @@ export class ExpressJSIPRestrictor {
     }
 
     public addIPAddress(ipAddress: string): ExpressJSIPRestrictor {
-        Majuro.getDefaultLoggerForRuntime().log(`addIPAddress('${ipAddress}')`, {
-            class: 'ExpressJSIPRestrictor',
-            method: 'addIPAddress',
-            namespace: 'expressjs-middleware',
-            parameters: {
-                ipAddress,
-            },
-        });
-
         this.ipAddresses.push(ipAddress);
 
         return this;
     }
 
     public allow(): ExpressJSIPRestrictor {
-        Majuro.getDefaultLoggerForRuntime().log(`allow()`, {
-            class: 'ExpressJSIPRestrictor',
-            method: 'allow',
-            namespace: 'expressjs-middleware',
-            parameters: {
-            },
-        });
-
         this.mode = 'allow';
 
         return this;
     }
 
     public build(): (request, response, next) => void {
-        Majuro.getDefaultLoggerForRuntime().log(`build()`, {
-            class: 'ExpressJSIPRestrictor',
-            method: 'build',
-            namespace: 'expressjs-middleware',
-            parameters: {
-            },
-        });
-
         return (request, response, next) => {
             let ipAddress: string = null;
 
@@ -86,14 +61,6 @@ export class ExpressJSIPRestrictor {
     }
 
     public deny(): ExpressJSIPRestrictor {
-        Majuro.getDefaultLoggerForRuntime().log(`deny()`, {
-            class: 'ExpressJSIPRestrictor',
-            method: 'deny',
-            namespace: 'expressjs-middleware',
-            parameters: {
-            },
-        });
-
         this.mode = 'deny';
 
         return this;

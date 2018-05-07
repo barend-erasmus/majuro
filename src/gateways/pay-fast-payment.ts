@@ -47,15 +47,6 @@ export class PayFastPaymentGateway implements IPaymentGateway {
     }
 
     public async createURIForSubscription(subscription: Subscription): Promise<string> {
-        Majuro.getDefaultLoggerForRuntime().log(`createURIForSubscription(subscription)`, {
-            class: 'PayFastPaymentGateway',
-            method: 'createURIForSubscription',
-            namespace: 'gateways',
-            parameters: {
-                subscription,
-            },
-        });
-
         let frequency: number = null;
 
         switch (subscription.frequency) {

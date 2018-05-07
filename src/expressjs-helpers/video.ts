@@ -13,6 +13,12 @@ export class ExpressJSVideoHelper {
 
     public send(fileRelativePath: string, request, response): void {
         const filePath: string = path.join(this.basePath, fileRelativePath);
+
+        if (!fs.existsSync(filePath)) {
+            response.status(404).end();
+            return;
+        }
+
         const fileStat: any = fs.statSync(filePath);
         const fileSize: number = fileStat.size;
 

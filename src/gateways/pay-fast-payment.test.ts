@@ -28,6 +28,7 @@ describe('PayFastPaymentGateway', () => {
                     Frequency.Monthly,
                     1,
                     'Lorem ipsum',
+                    'type',
                     'userId'));
 
             // tslint:disable-next-line:max-line-length

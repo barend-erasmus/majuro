@@ -12,17 +12,8 @@ export class SubscriptionService implements ISubscriptionService {
 
     }
 
-    public async cancel(userId: string): Promise<boolean> {
-        Majuro.getDefaultLoggerForRuntime().log(`cancel('${userId}')`, {
-            class: 'SubscriptionService',
-            method: 'cancel',
-            namespace: 'services',
-            parameters: {
-                userId,
-            },
-        });
-
-        const subscription: Subscription = await this.subscriptionRepository.find(userId);
+    public async cancel(type: string, userId: string): Promise<boolean> {
+        const subscription: Subscription = await this.subscriptionRepository.find(type, userId);
 
         if (!subscription) {
             return null;
@@ -48,15 +39,6 @@ export class SubscriptionService implements ISubscriptionService {
     }
 
     public async create(subscription: Subscription): Promise<OperationResult<SubscriptionCreateResult>> {
-        Majuro.getDefaultLoggerForRuntime().log(`create(subscription)`, {
-            class: 'SubscriptionService',
-            method: 'create',
-            namespace: 'services',
-            parameters: {
-                subscription,
-            },
-        });
-
         const operationResult: OperationResult<SubscriptionCreateResult> = new OperationResult<SubscriptionCreateResult>(null);
 
         this.subscriptionValidator.validate(subscription, operationResult);
@@ -95,17 +77,8 @@ export class SubscriptionService implements ISubscriptionService {
         return operationResult;
     }
 
-    public async isPaid(userId: string): Promise<boolean> {
-        Majuro.getDefaultLoggerForRuntime().log(`isPaid('${userId}')`, {
-            class: 'SubscriptionService',
-            method: 'isPaid',
-            namespace: 'services',
-            parameters: {
-                userId,
-            },
-        });
-
-        const subscription: Subscription = await this.subscriptionRepository.find(userId);
+    public async isPaid(type: string, userId: string): Promise<boolean> {
+        const subscription: Subscription = await this.subscriptionRepository.find(type, userId);
 
         if (!subscription) {
             return null;

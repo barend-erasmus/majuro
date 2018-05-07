@@ -10,18 +10,6 @@ export class SendGridMailSender implements IMailSender {
     }
 
     public async send(body: string, from: string, subject: string, to: string): Promise<void> {
-        Majuro.getDefaultLoggerForRuntime().log(`send('${body}', '${from}', '${subject}', '${to}')`, {
-            class: 'SendGridMailSender',
-            method: 'send',
-            namespace: 'mail-senders',
-            parameters: {
-                body,
-                from,
-                subject,
-                to,
-            },
-        });
-
         const result: any = await axios({
             data: {
                 content: [
