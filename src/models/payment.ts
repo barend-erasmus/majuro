@@ -1,4 +1,6 @@
-export class Payment {
+import { IClonable } from '../interfaces/clonable';
+
+export class Payment implements IClonable<Payment> {
 
     constructor(
         public id: number,
@@ -7,6 +9,10 @@ export class Payment {
         public token: string,
     ) {
 
+    }
+
+    public clone(): Payment {
+        return new Payment(this.id, this.subscriptionId, this.timestamp, this.token);
     }
 
 }

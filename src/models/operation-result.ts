@@ -13,7 +13,7 @@ export class OperationResult<T> {
     }
 
     public addMessage(code: string, field: string, message: string): OperationResult<T> {
-        this.messages.push(new ValidationMessage(field, message));
+        this.messages.push(new ValidationMessage(code, field, message));
 
         return this;
     }

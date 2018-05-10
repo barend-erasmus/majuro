@@ -1,6 +1,7 @@
 import { Frequency } from '..';
+import { IClonable } from '../interfaces/clonable';
 
-export class Subscription {
+export class Subscription implements IClonable<Subscription> {
 
     constructor(
         public amount: number,
@@ -12,6 +13,10 @@ export class Subscription {
         public userId: string,
     ) {
 
+    }
+
+    public clone(): Subscription {
+        return new Subscription(this.amount, this.description, this.frequency, this.id, this.name, this.type, this. userId);
     }
 
 }

@@ -1,3 +1,4 @@
+export * from './interfaces/clonable';
 export * from './interfaces/cryptography-algorithm';
 export * from './interfaces/foreign-exchange-gateway';
 export * from './interfaces/hash-algorithm';
