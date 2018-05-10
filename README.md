@@ -78,6 +78,10 @@ Interface: *IMailSender*
 * `Subscription`
 * `ValidationMessage`
 
+### Others
+
+* `ObjectPool<T>`
+
 ### Services
 
 * `SubscriptionService`
