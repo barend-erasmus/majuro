@@ -1,7 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import * as moment from 'moment';
 import { Frequency, IPaymentGateway, MD5, Subscription } from '..';
-import { Majuro } from '../majuro';
 
 export class PayFastPaymentGateway implements IPaymentGateway {
 
@@ -27,7 +26,11 @@ export class PayFastPaymentGateway implements IPaymentGateway {
 
         const sortedKeys: string[] = Object.keys(params).sort();
 
-        const paramsString = sortedKeys.map((key: string) => `${key}=${encodeURIComponent(params[key].replace(new RegExp('\\\\', 'g'), ''))}`).join('&');
+        const paramsString = sortedKeys
+            .filter((key: string) => params[key] !== undefined && params[key] !== null)
+            .map((key: string) => `${key}=${encodeURIComponent(params[key]
+                .replace(new RegExp('\\\\', 'g'), ''))}`)
+            .join('&');
 
         const signature: string = new MD5().calculate(paramsString);
 
@@ -88,7 +91,11 @@ export class PayFastPaymentGateway implements IPaymentGateway {
 
         const signature: string = this.generateSignature(params);
 
-        return `https://${this.sandbox ? 'sandbox' : 'www'}.payfast.co.za/eng/process?${sortedKeys.map((key) => `${key}=${encodeURIComponent(params[key]).replace(/%20/g, '+')}`).join('&')}&signature=${signature}`;
+        return `https://${this.sandbox ? 'sandbox' : 'www'}.payfast.co.za/eng/process?${sortedKeys
+            .filter((key: string) => params[key] !== undefined && params[key] !== null)
+            .map((key) => `${key}=${encodeURIComponent(params[key])
+                .replace(/%20/g, '+')}`)
+            .join('&')}&signature=${signature}`;
     }
 
     protected generateSignature(params: any): string {
@@ -117,7 +124,7 @@ export class PayFastPaymentGateway implements IPaymentGateway {
         ];
 
         const str: string = variables
-            .filter((variable: string) => params[variable])
+            .filter((variable: string) => params[variable] !== undefined && params[variable] !== null)
             .map((variable: string) => `${variable}=${encodeURIComponent(params[variable]).replace(/%20/g, '+')}`)
             .join('&');
 
