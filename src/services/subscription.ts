@@ -1,5 +1,4 @@
 import { IPaymentGateway, IPaymentRepository, ISubscriptionRepository, ISubscriptionService, IValidator, OperationResult, Payment, Subscription, SubscriptionCreateResult } from '..';
-import { Majuro } from '../majuro';
 
 export class SubscriptionService implements ISubscriptionService {
 
@@ -52,23 +51,21 @@ export class SubscriptionService implements ISubscriptionService {
 
         try {
             subscriptionCreate = await this.subscriptionRepository.create(subscription);
-        } catch {
+        } catch (error) {
+            operationResult.addError(error);
             operationResult.addMessage('error', null, 'An error occured while saving subscription');
-        }
 
-        if (operationResult.hasErrors()) {
             return operationResult;
         }
 
         try {
             uri = await this.paymentGateway.createURIForSubscription(subscription);
-        } catch {
+        } catch (error) {
+            operationResult.addError(error);
             operationResult.addMessage('error', null, 'An error occured while retrieving URI for subscription');
 
             await this.subscriptionRepository.delete(subscription.id);
-        }
 
-        if (operationResult.hasErrors()) {
             return operationResult;
         }
 
