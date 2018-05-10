@@ -59,17 +59,17 @@ export class SubscriptionService implements ISubscriptionService {
         }
 
         try {
-            uri = await this.paymentGateway.createURIForSubscription(subscription);
+            uri = await this.paymentGateway.createURIForSubscription(subscriptionCreate);
         } catch (error) {
             operationResult.addError(error);
             operationResult.addMessage('error', null, 'An error occured while retrieving URI for subscription');
 
-            await this.subscriptionRepository.delete(subscription.id);
+            await this.subscriptionRepository.delete(subscriptionCreate.id);
 
             return operationResult;
         }
 
-        operationResult.setResult(new SubscriptionCreateResult(subscription.id, uri));
+        operationResult.setResult(new SubscriptionCreateResult(subscriptionCreate.id, uri));
 
         return operationResult;
     }
