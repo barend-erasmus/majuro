@@ -1,5 +1,3 @@
-import { Majuro } from '../majuro';
-
 export class ExpressJSIPRestrictor {
 
     protected ipAddresses: string[] = null;

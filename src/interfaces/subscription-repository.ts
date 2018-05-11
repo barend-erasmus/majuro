@@ -6,6 +6,6 @@ export interface ISubscriptionRepository {
 
     delete(subscriptionId: number): Promise<void>;
 
-    find(type: string, userId: string): Promise<Subscription>;
+    findByUserId(type: string, userId: string): Promise<Subscription>;
 
 }

@@ -32,7 +32,7 @@ describe('PayFastPaymentGateway', () => {
                     'userId'));
 
             // tslint:disable-next-line:max-line-length
-            expect(result).to.be.eq('https://sandbox.payfast.co.za/eng/process?amount=10&cancel_url=https%3A%2F%2Fexample.com%2Fcancel%3FsubscriptionId%3D1&cycles=0&email_address=userId&frequency=3&item_description=Lorem+ipsum+dolor+sit+amet%2C+consectetur+adipiscing+elit.&item_name=Lorem+ipsum&m_payment_id=1&merchant_id=10000100&merchant_key=46f0cd694581a&name_first=userId&notify_url=https%3A%2F%2Fexample.com%2Fnotify&payment_method=cc&return_url=https%3A%2F%2Fexample.com%2Freturn%3FsubscriptionId%3D1&subscription_type=1&signature=a3de060cf92c5a6fe30a4394b848608b');
+            expect(result).to.be.eq('https://sandbox.payfast.co.za/eng/process?amount=10&cancel_url=https%3A%2F%2Fexample.com%2Fcancel%3FsubscriptionId%3D1&cycles=0&email_address=userId&frequency=3&item_description=Lorem+ipsum+dolor+sit+amet%2C+consectetur+adipiscing+elit.&item_name=Lorem+ipsum&m_payment_id=1&merchant_id=10000100&merchant_key=46f0cd694581a&name_first=userId&notify_url=https%3A%2F%2Fexample.com%2Fnotify&payment_method=cc&return_url=https%3A%2F%2Fexample.com%2Freturn%3FsubscriptionId%3D1&subscription_type=1&signature=bc08e996f9083c70d3d0ebfe4e910fc0');
 
         });
 

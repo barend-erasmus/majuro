@@ -1,6 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
 import { IForeignExchangeGateway } from '../interfaces/foreign-exchange-gateway';
-import { Majuro } from '../majuro';
 
 export class FixerForeignExchangeGateway implements IForeignExchangeGateway {
 

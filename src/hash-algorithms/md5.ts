@@ -1,6 +1,5 @@
 import * as crypto from 'crypto';
-import { IHashAlgorithm } from '../interfaces/hash-algorithm';
-import { Majuro } from '../majuro';
+import { IHashAlgorithm } from '..';
 
 export class MD5 implements IHashAlgorithm {
 

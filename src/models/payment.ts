@@ -1,4 +1,4 @@
-import { IClonable } from '../interfaces/clonable';
+import { IClonable } from '..';
 
 export class Payment implements IClonable<Payment> {
 

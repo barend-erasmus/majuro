@@ -1,5 +1,4 @@
-import { IHashAlgorithm } from '../interfaces/hash-algorithm';
-import { Majuro } from '../majuro';
+import { IHashAlgorithm } from '..';
 
 export class DJBD2 implements IHashAlgorithm {
 

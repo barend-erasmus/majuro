@@ -1,4 +1,4 @@
-import { ValidationMessage } from './validation-message';
+import { ValidationMessage } from '..';
 
 export class OperationResult<T> {
 

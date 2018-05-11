@@ -1,5 +1,4 @@
-import { Frequency } from '..';
-import { IClonable } from '../interfaces/clonable';
+import { Frequency, IClonable } from '..';
 
 export class Subscription implements IClonable<Subscription> {
 

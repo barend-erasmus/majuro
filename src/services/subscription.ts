@@ -12,7 +12,7 @@ export class SubscriptionService implements ISubscriptionService {
     }
 
     public async cancel(type: string, userId: string): Promise<boolean> {
-        const subscription: Subscription = await this.subscriptionRepository.find(type, userId);
+        const subscription: Subscription = await this.subscriptionRepository.findByUserId(type, userId);
 
         if (!subscription) {
             return null;
@@ -75,7 +75,7 @@ export class SubscriptionService implements ISubscriptionService {
     }
 
     public async isPaid(type: string, userId: string): Promise<boolean> {
-        const subscription: Subscription = await this.subscriptionRepository.find(type, userId);
+        const subscription: Subscription = await this.subscriptionRepository.findByUserId(type, userId);
 
         if (!subscription) {
             return null;

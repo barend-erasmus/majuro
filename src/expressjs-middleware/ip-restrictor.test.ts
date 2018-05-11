@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import 'mocha';
 import * as sinon from 'sinon';
-import { ExpressJSIPRestrictor } from './ip-restrictor';
+import { ExpressJSIPRestrictor } from '..';
 
 describe('ExpressJSIPRestrictor', () => {
 

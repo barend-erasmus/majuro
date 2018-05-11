@@ -19,7 +19,7 @@ describe('SubscriptionService', () => {
             },
         } as IPaymentRepository;
         subscriptionRepository = {
-            find: (type: string, userId: string) => {
+            findByUserId: (type: string, userId: string) => {
                 return Promise.resolve(null);
             },
         } as ISubscriptionRepository;
@@ -38,7 +38,7 @@ describe('SubscriptionService', () => {
                 new Payment(null, null, new Date(2018, new Date().getMonth(), 1, 0, 0, 0), null),
             ]);
 
-            sinon.stub(subscriptionRepository, 'find').returns(new Subscription(null, null, Frequency.Monthly, null, null, null, null));
+            sinon.stub(subscriptionRepository, 'findByUserId').returns(new Subscription(null, null, Frequency.Monthly, null, null, null, null));
 
             const result: boolean = await subscriptionService.isPaid(null, 'userId');
 
@@ -53,7 +53,7 @@ describe('SubscriptionService', () => {
                 new Payment(null, null, new Date(2018, new Date().getMonth() - 1, 1, 0, 0, 0), null),
             ]);
 
-            sinon.stub(subscriptionRepository, 'find').returns(new Subscription(null, null, Frequency.Monthly, null, null, null, null));
+            sinon.stub(subscriptionRepository, 'findByUserId').returns(new Subscription(null, null, Frequency.Monthly, null, null, null, null));
 
             const result: boolean = await subscriptionService.isPaid(null, 'userId');
 
@@ -70,7 +70,7 @@ describe('SubscriptionService', () => {
                 new Payment(null, null, new Date(2018, new Date().getMonth() + 1, 1, 0, 0, 0), null),
             ]);
 
-            sinon.stub(subscriptionRepository, 'find').returns(new Subscription(null, null, Frequency.Monthly, null, null, null, null));
+            sinon.stub(subscriptionRepository, 'findByUserId').returns(new Subscription(null, null, Frequency.Monthly, null, null, null, null));
 
             const result: boolean = await subscriptionService.isPaid(null, 'userId');
 
