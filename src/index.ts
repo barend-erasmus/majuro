@@ -42,6 +42,8 @@ export * from './models/subscription';
 export * from './models/subscription-create-result';
 export * from './models/validation-message';
 
+export * from './others/object-pool';
+
 export * from './services/subscription';
 
 export * from './validators/subscription';
