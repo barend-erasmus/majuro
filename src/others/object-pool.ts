@@ -4,17 +4,17 @@ export class ObjectPool<T> {
 
     protected objects: T[] = null;
 
-    constructor(protected objectCreateMethod: () => T, protected size: number) {
+    constructor(protected objectCreateMethod: () => Promise<T>, protected size: number) {
         this.index = 0;
 
         this.objects = [];
     }
 
-    public get(): T {
+    public async get(): Promise<T> {
         let obj = this.objects[this.index];
 
         if (!obj) {
-            obj = this.objectCreateMethod();
+            obj = await this.objectCreateMethod();
 
             this.objects.push(obj);
         }
