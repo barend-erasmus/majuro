@@ -11,12 +11,18 @@ export class DailyRollingFileLogger implements ILogger {
         protected name: string,
     ) {
         if (!this.format) {
-            format = 'YYYY-MM-DD';
+            this.format = 'YYYY-MM-DD';
         }
     }
 
     public debug(message: string, meta?: any): void {
-        fs.appendFile(path.join(this.filePath, `${this.name}-${moment().format(this.format)}.log`), JSON.stringify({
+        const fileName: string = path.join(this.filePath, `${this.name}-${moment().format(this.format)}.log`);
+
+        if (!fs.existsSync(fileName)) {
+            fs.closeSync(fs.openSync(fileName, 'w'));
+        }
+
+        fs.appendFile(fileName, JSON.stringify({
             level: 'debug',
             message,
             meta,
@@ -26,7 +32,13 @@ export class DailyRollingFileLogger implements ILogger {
     }
 
     public error(error: Error, meta?: any): void {
-        fs.appendFile(path.join(this.filePath, `${this.name}-${moment().format(this.format)}.log`), JSON.stringify({
+        const fileName: string = path.join(this.filePath, `${this.name}-${moment().format(this.format)}.log`);
+
+        if (!fs.existsSync(fileName)) {
+            fs.closeSync(fs.openSync(fileName, 'w'));
+        }
+
+        fs.appendFile(fileName, JSON.stringify({
             error,
             level: 'error',
             meta,
@@ -36,7 +48,13 @@ export class DailyRollingFileLogger implements ILogger {
     }
 
     public info(message: string, meta?: any): void {
-        fs.appendFile(path.join(this.filePath, `${this.name}-${moment().format(this.format)}.log`), JSON.stringify({
+        const fileName: string = path.join(this.filePath, `${this.name}-${moment().format(this.format)}.log`);
+
+        if (!fs.existsSync(fileName)) {
+            fs.closeSync(fs.openSync(fileName, 'w'));
+        }
+
+        fs.appendFile(fileName, JSON.stringify({
             level: 'info',
             message,
             meta,
@@ -46,7 +64,13 @@ export class DailyRollingFileLogger implements ILogger {
     }
 
     public log(message: string, meta?: any): void {
-        fs.appendFile(path.join(this.filePath, `${this.name}-${moment().format(this.format)}.log`), JSON.stringify({
+        const fileName: string = path.join(this.filePath, `${this.name}-${moment().format(this.format)}.log`);
+
+        if (!fs.existsSync(fileName)) {
+            fs.closeSync(fs.openSync(fileName, 'w'));
+        }
+
+        fs.appendFile(fileName, JSON.stringify({
             message,
             meta,
         }), (err: Error) => {
@@ -55,7 +79,13 @@ export class DailyRollingFileLogger implements ILogger {
     }
 
     public warning(message: string, meta?: any): void {
-        fs.appendFile(path.join(this.filePath, `${this.name}-${moment().format(this.format)}.log`), JSON.stringify({
+        const fileName: string = path.join(this.filePath, `${this.name}-${moment().format(this.format)}.log`);
+
+        if (!fs.existsSync(fileName)) {
+            fs.closeSync(fs.openSync(fileName, 'w'));
+        }
+
+        fs.appendFile(fileName, JSON.stringify({
             level: 'warning',
             message,
             meta,
