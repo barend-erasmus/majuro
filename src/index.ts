@@ -32,6 +32,7 @@ export * from './hash-algorithms/sha1';
 export * from './hash-algorithms/sha256';
 export * from './hash-algorithms/sha512';
 
+export * from './loggers/console';
 export * from './loggers/loggly';
 
 export * from './mail-senders/send-grid';
